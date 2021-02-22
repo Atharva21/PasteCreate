@@ -22,8 +22,10 @@ app.use(function (req, res, next) {
 });
 
 const accountRoute = require('./routes/account');
+const pasteRoute = require('./routes/paste');
 
 app.use('/account', accountRoute);
+app.use('/paste', pasteRoute);
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {
     app.listen(process.env.PORT);
