@@ -13,8 +13,11 @@ const SignIn = ({ setIsSignedIn }) => {
         try {
             const res = await axios.post('http://localhost:8282/account/sign-in', payload);
             if (res.status === 200) {
+                localStorage.setItem('token', res.data);
                 setIsSignedIn(true);
                 history.push("/");
+            } else {
+                localStorage.clear('token');
             }
         } catch (err) {
             console.log(err);
