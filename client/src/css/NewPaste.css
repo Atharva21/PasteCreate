@@ -1,0 +1,22 @@
+.new-paste-container{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#text-paste-area {
+    width:70vw;
+    height: 50vw;
+}
+
+h2 {
+    margin-bottom: 2rem;
+}
+
+.submit-btn-paste {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
