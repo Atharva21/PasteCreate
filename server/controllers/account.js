@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 exports.signUp = (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
@@ -32,6 +33,10 @@ exports.signUp = (req, res) => {
     });
 };
 
+const generateAccessToken = (email) => {
+    return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: 86400 });
+}
+
 exports.signIn = (req, res) => {
     const email = req.body.email;
     let password = req.body.password;
@@ -40,7 +45,7 @@ exports.signIn = (req, res) => {
             const dbPassword = result[0].password;
             bcrypt.compare(password, dbPassword, (err, result) => {
                 if (result === true) {
-                    res.send("OK");
+                    res.json(generateAccessToken(email));
                 } else {
                     res.status(400).send("Invalid credentials");
                 }
