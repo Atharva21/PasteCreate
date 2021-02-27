@@ -2,6 +2,7 @@ import "../css/SignInSignUp.css";
 import { Button } from "./Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 const SignIn = ({ setIsSignedIn }) => {
     let history = useHistory();
     const handleSignIn = async (e) => {
@@ -11,16 +12,18 @@ const SignIn = ({ setIsSignedIn }) => {
             password: e.target.password.value,
         }
         try {
-            const res = await axios.post('http://localhost:8282/account/sign-in', payload);
+            const res = await axios.post(process.env.REACT_APP_SERVER + 'account/sign-in', payload);
             if (res.status === 200) {
-                localStorage.setItem('token', res.data);
+                document.cookie = `token=${res.data.token};max-age=86400;domain=` + process.env.REACT_APP_SERVER_NAME;
+                localStorage.setItem('user', res.data.id)
+                localStorage.setItem('name', res.data.name)
                 setIsSignedIn(true);
                 history.push("/");
             } else {
-                localStorage.clear('token');
+                swal("Invalid credentials");
             }
         } catch (err) {
-            console.log(err);
+            swal("Invalid credentials");
         }
     }
     return (
