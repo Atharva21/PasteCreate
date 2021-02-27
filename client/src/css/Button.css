@@ -2,13 +2,24 @@
     --primary: #3acbf7;
 }
 
+/* TODO:: */
+.btn--outline-flex-end {
+    background-color: transparent;
+    color: black !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    transition: all 0.3 ease-out;
+    align-self: flex-end;
+}
+
+
 .btn {
     padding: 8px 20px;
-    margin:0px 5px;
-    background-color:black;
-    border-radius:  4px;
+    margin: 5px;
+    border-radius: 4px;
     outline: none;
-    border:none;
+    border: none;
     cursor: pointer;
 }
 
@@ -21,30 +32,29 @@
 }
 
 .btn--primary {
-    background-color: var(--primary0);
+    background-color: var(--primary);
 }
 
 .btn--outline {
     background-color: transparent;
-    color: black !important;
+    color: #fff;
     padding: 8px 20px;
     border-radius: 4px;
     border: 1px solid var(--primary);
-    transition: all 0.3 ease-out;
+    transition: all 0.3s ease-out;
 }
-
 
 .btn--medium {
     padding: 8px 20px;
     border-radius: 4px;
     font-size: 18px;
-    color: #fff;
+    color: #6568F4;
 }
 
 .btn-large {
-    padding:8px 26px;
+    padding: 12px 26px;
     border-radius: 4px;
-    font-size:20px;
-    color: #fff;
+    font-size: 20px;
+    color: #6568F4;
 }
 

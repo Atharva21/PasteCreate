@@ -8,8 +8,10 @@
 }
 
 #text-paste-area {
-    width:70vw;
-    height: 50vw;
+    width:80vw;
+    height: 60vh;
+    overflow-y: scroll;
+    margin:10px 0px;
 }
 
 h2 {
@@ -19,4 +21,16 @@ h2 {
 .submit-btn-paste {
     margin-top: 2rem;
     margin-bottom: 5rem;
+}
+
+#title {
+    margin-bottom: 1rem;
+}
+
+#private {
+    margin-left:.7rem;
+}
+
+.private-paste-checkbox-container {
+    margin-top: 10px;
 }

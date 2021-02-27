@@ -1,0 +1,38 @@
+.pastes-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 10px;
+}
+
+.paste {
+    display: flex;
+    padding: 30px 20px;
+    margin: 5px 100px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    flex-direction: column;
+    white-space:pre-line;
+}
+
+.my-paste-btn-container {
+    margin-top: 20px;
+    align-self: flex-end;
+}
+.fa-window-close {
+    font-size: 30px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 960px) { 
+    .paste {
+        display: flex;
+        padding: 7px 9px;
+        margin: 5px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        flex-direction: column;
+        white-space:pre-line;
+    }
+}
