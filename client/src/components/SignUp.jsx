@@ -2,6 +2,7 @@ import "../css/SignInSignUp.css";
 import { Button } from "./Button";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 const SignUp = () => {
     let history = useHistory();
     const handleSignUp = async (e) => {
@@ -12,12 +13,23 @@ const SignUp = () => {
             password: e.target.password.value,
         }
         try {
-            const res = await axios.post('http://localhost:8282/account/sign-up', payload);
+            const res = await axios.post(process.env.REACT_APP_SERVER + '/account/sign-up', payload);
             if (res.status === 200) {
-                history.push("/");
+                swal({
+                    title: "Your account has been created",
+                    text: "Please sign in!",
+                    icon: "success",
+                    button: "Aww yiss!",
+                })
+                    .then(() => {
+                        history.push("/sign-in");
+                    });
+
+            } else {
+                swal("Server error please try again");
             }
         } catch (err) {
-            console.log(err);
+            swal("Server error please try again");
         }
     };
     return (
