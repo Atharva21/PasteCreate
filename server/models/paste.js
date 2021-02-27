@@ -7,6 +7,14 @@ const pasteSchema = new Schema({
         type: String,
         required: true
     },
+    adddate: {
+        type: Number,
+        required: true
+    },
+    url: {
+        type: String,
+        require: true
+    },
     email: {
         type: String,
         required: true
