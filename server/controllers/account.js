@@ -41,17 +41,20 @@ exports.signIn = (req, res) => {
     const email = req.body.email;
     let password = req.body.password;
     User.find({ email: email }, (err, result) => {
+        if (err) {
+            res.status(500).send("Server error");
+        }
         if (result.length) {
             const dbPassword = result[0].password;
-            bcrypt.compare(password, dbPassword, (err, result) => {
-                if (result === true) {
-                    res.json(generateAccessToken(email));
+            bcrypt.compare(password, dbPassword, (err, passwordsMatch) => {
+                if (passwordsMatch === true) {
+                    res.json({ 'token': generateAccessToken(email), id: result[0]._id, name: result[0].name });
                 } else {
-                    res.status(400).send("Invalid credentials");
+                    res.status(403).send("Invalid credentials");
                 }
             });
         } else {
-            res.status(400).send("Invalid credentials");
+            res.status(403).send("Invalid credentials");
         }
     });
 
