@@ -12,7 +12,7 @@ const MyPastes = () => {
     useEffect(() => {
         let config = {
             headers: {
-                'Authorization': 'Bearer ' + Cookies.get('token')
+                'Authorization': 'Bearer ' + localStorage.get('token')
             }
         }
         try {
@@ -43,7 +43,7 @@ const MyPastes = () => {
                 if (willDelete) {
                     let config = {
                         headers: {
-                            'Authorization': 'Bearer ' + Cookies.get('token')
+                            'Authorization': 'Bearer ' + localStorage.get('token')
                         }
                     }
                     try {
@@ -109,32 +109,32 @@ const MyPastes = () => {
                         </div>
                     </Fragment>
                 )) : (
-                        <Fragment>
-                            {myPastes.length === 0 && !isLoading ? (
-                                <div className='flex-center'>
-                                    <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
-                                </div>
-                            ) : (
+                    <Fragment>
+                        {myPastes.length === 0 && !isLoading ? (
+                            <div className='flex-center'>
+                                <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
+                            </div>
+                        ) : (
+                            <Fragment>
+                                {isLoading && curPaste ? (
                                     <Fragment>
-                                        {isLoading && curPaste ? (
-                                            <Fragment>
-                                                <i className='fa fa-window-close' onClick={
-                                                    clearCurrentPaste
-                                                }></i>
-                                                < div id={Date.now()} className='paste' >
-                                                    {curPaste.data}
-                                                    <div className='my-paste-btn-container'>
-                                                        <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </Fragment>
-                                        ) : ("")}
+                                        <i className='fa fa-window-close' onClick={
+                                            clearCurrentPaste
+                                        }></i>
+                                        < div id={Date.now()} className='paste' >
+                                            {curPaste.data}
+                                            <div className='my-paste-btn-container'>
+                                                <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
+                                                />
+                                            </div>
+                                        </div>
                                     </Fragment>
-                                )}
+                                ) : ("")}
+                            </Fragment>
+                        )}
 
-                        </Fragment>
-                    )
+                    </Fragment>
+                )
                 }
             </div >
         </div >

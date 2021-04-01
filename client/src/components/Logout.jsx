@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import "../css/Main.css";
 const Logout = ({ setIsSignedIn }) => {
     useEffect(() => {
-        document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         localStorage.clear();
         setIsSignedIn(false);
     }, [setIsSignedIn]);

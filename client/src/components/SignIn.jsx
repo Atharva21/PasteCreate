@@ -14,7 +14,7 @@ const SignIn = ({ setIsSignedIn }) => {
         try {
             const res = await axios.post(process.env.REACT_APP_SERVER + 'account/sign-in', payload);
             if (res.status === 200) {
-                document.cookie = `token=${res.data.token};max-age=86400;domain=` + process.env.REACT_APP_SERVER_NAME;
+                localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user', res.data.id)
                 localStorage.setItem('name', res.data.name)
                 setIsSignedIn(true);
