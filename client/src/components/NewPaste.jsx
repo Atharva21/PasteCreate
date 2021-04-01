@@ -2,7 +2,6 @@ import "../css/NewPaste.css";
 import { Button } from "./Button";
 import React from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import swal from 'sweetalert';
 const NewPaste = () => {
     const [isPrivate, setIsPrivate] = React.useState(false);
