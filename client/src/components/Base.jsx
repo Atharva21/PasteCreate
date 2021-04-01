@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const Base = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);
     useEffect(() => {
-        const loggedInUser = localStorage.getItem("user");
+        const loggedInUser = localstorage.getItemItem("user");
         if (loggedInUser) {
             setIsSignedIn(true);
         }

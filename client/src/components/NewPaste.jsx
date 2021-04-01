@@ -27,7 +27,7 @@ const NewPaste = () => {
                 private: inputFields.private
             },
                 {
-                    headers: { 'Authorization': 'Bearer ' + localStorage.get('token') }
+                    headers: { 'Authorization': 'Bearer ' + localstorage.getItemItem('token') }
                 });
             if (result.status === 200) {
                 swal("Your paste is saved", "", "success");
