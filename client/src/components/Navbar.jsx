@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import Logout from "./Logout";
 const Header = ({ isSignedIn, setIsSignedIn }) => {
     const [clicked, setClicked] = useState(false);
-    const [darkMode, setDarkMode] = useState(localstorage.getItemItem('dark'));
+    const [darkMode, setDarkMode] = useState(localStorage.getItemItem('dark'));
 
     const handleClick = () => {
         setClicked(!clicked);

@@ -12,7 +12,7 @@ const MyPastes = () => {
     useEffect(() => {
         let config = {
             headers: {
-                'Authorization': 'Bearer ' + localstorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         }
         try {
@@ -43,7 +43,7 @@ const MyPastes = () => {
                 if (willDelete) {
                     let config = {
                         headers: {
-                            'Authorization': 'Bearer ' + localstorage.getItem('token')
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     }
                     try {
