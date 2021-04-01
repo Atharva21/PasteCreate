@@ -51,7 +51,7 @@ const Header = ({ isSignedIn, setIsSignedIn }) => {
         <Router>
             <nav className="NavbarItems">
                 <Link to="/home">
-                    <h1 className="navbar-logo">PasteCrate <i className="fas fa-clipboard"></i></h1>
+                    <h1 className="navbar-logo">PasteCreate <i className="fas fa-clipboard"></i></h1>
                 </Link>
                 <div className="menu-icon" onClick={handleClick}>
                     <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
