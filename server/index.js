@@ -11,6 +11,10 @@ app.use(cors())
 const accountRoute = require('./routes/account');
 const pasteRoute = require('./routes/paste');
 
+app.get('/ping', (req, res) => {
+    res.send('pong');
+});
+
 app.use('/account', accountRoute);
 app.use('/paste', pasteRoute);
 app.get('/:pasteUrl', pasteRoute);
