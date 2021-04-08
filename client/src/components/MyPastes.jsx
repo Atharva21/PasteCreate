@@ -74,7 +74,7 @@ const MyPastes = () => {
     };
 
     const handleCopyUrl = (url) => {
-        const completeUrl = process.env.REACT_APP_SERVER + url;
+        const completeUrl = process.env.DOMAIN + "/" + url;
         navigator.clipboard.writeText(completeUrl);
         swal("Link copied to clipboard");
     };
@@ -90,9 +90,9 @@ const MyPastes = () => {
     return (
         <div>
             <div className='pastes-container'>
-                {!curPaste && myPastes.length ? (myPastes.map((item) =>
+                {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
                     <Fragment>
-                        <div key={23} className='paste' >
+                        <div key={index} className='paste' >
                             <h2>{item.title.slice(0, 50)}</h2>
                             <div>
                                 {item.data.slice(0, 200) + "..."}
