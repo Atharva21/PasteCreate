@@ -42,7 +42,6 @@ const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
             <nav className="NavbarItems">
                 <Link to="/home">
                     <h1 className="navbar-logo">PasteCreate <i className="fas fa-clipboard"></i>
-                        <span style={{ fontSize: '15px', marginLeft: '8px' }}>{process.env.REACT_APP_VER}</span>
                     </h1>
                 </Link>
                 <div className="menu-icon" onClick={handleClick}>
