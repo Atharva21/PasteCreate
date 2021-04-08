@@ -19,9 +19,7 @@ const ViewPaste = (props) => {
             axios.get(process.env.REACT_APP_SERVER + props.location.pathname, config)
                 .then((res) => {
                     if (res.status === 200) {
-                        setCurPaste((prev) => {
-                            return res.data;
-                        });
+                        setCurPaste(res.data)
                     }
                 }).catch(err => {
                     console.log(err);
@@ -39,18 +37,18 @@ const ViewPaste = (props) => {
                     <h1>Paste not found! <i className='fas fa-frown'></i></h1>
                 </div>
             ) : (
-                    <Fragment>
-                        {curPaste.map((item) => (
-                            <Fragment>
-                                <div key={item._id} className='paste'>
-                                    <h2>{item.title}</h2>
-                                    {item.data}
-                                    <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline-flex-end' onClick={() => { handleCopyText(item.data) }} />
-                                </div>
-                            </Fragment>
-                        ))}
-                    </Fragment>
-                )}
+                <Fragment>
+                    {curPaste.map((item) => (
+                        <Fragment>
+                            <div key={item._id} className='paste'>
+                                <h2>{item.title}</h2>
+                                {item.data}
+                                <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline-flex-end' onClick={() => { handleCopyText(item.data) }} />
+                            </div>
+                        </Fragment>
+                    ))}
+                </Fragment>
+            )}
         </div>
     )
 };
