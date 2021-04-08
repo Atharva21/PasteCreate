@@ -3,6 +3,27 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 const Base = () => {
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [darkMode, setDarkMode] = useState(localStorage.getItem('dark'));
+
+    const toggleDarkMode = () => {
+        localStorage.setItem('dark', !darkMode);
+        setDarkMode(!darkMode);
+    };
+
+    useEffect(() => {
+        if (darkMode === true)
+            document.body.classList.add('dark-mode')
+        else
+            document.body.classList.remove('dark-mode')
+    }, [darkMode])
+
+    useEffect(() => {
+        if (localStorage.getItem('dark') === true) {
+            setDarkMode(true)
+        } else {
+            setDarkMode(false)
+        }
+    }, []);
 
     const checkLoginStatus = async () => {
         try {
@@ -25,7 +46,7 @@ const Base = () => {
     }, [checkLoginStatus])
 
     return (
-        <NavBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} />
+        <NavBar isSignedIn={isSignedIn} setIsSignedIn={setIsSignedIn} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     )
 };
 
