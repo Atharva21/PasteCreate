@@ -25,6 +25,9 @@ const ViewPaste = (props) => {
                     console.log(err);
                 });
         }
+        return () => {
+            setCurPaste([])
+        }
     }, [props.location])
     const handleCopyText = (text) => {
         navigator.clipboard.writeText(text);
