@@ -62,14 +62,17 @@ exports.signIn = (req, res) => {
 exports.isLoggedIn = (req, res) => {
     const authorization = req.headers['authorization'];
     if (!authorization) {
-        res.status(401).json("Unauthorized user");
+        res.sendStatus(401)
     }
     try {
         const token = authorization.split(" ")[1];
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-        res.send(200).json("Authorized");
+        if (decoded)
+            res.sendStatus(200)
+        else
+            res.sendStatus(401)
     } catch (err) {
-        res.status(401).json("Unauthorized user");
+        res.sendStatus(401)
     }
 };
 
