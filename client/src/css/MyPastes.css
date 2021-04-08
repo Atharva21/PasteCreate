@@ -8,7 +8,7 @@
 .paste {
     display: flex;
     padding: 30px 20px;
-    margin: 5px 100px;
+    margin: 2em 10em;
     border: 1px solid grey;
     border-radius: 5px;
     flex-direction: column;
