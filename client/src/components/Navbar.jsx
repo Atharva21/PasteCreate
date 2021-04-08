@@ -15,26 +15,16 @@ import "../css/NavBar.css";
 
 import { useState, useEffect } from "react";
 import Logout from "./Logout";
-const Header = ({ isSignedIn, setIsSignedIn }) => {
+const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
     const [clicked, setClicked] = useState(false);
-    const [darkMode, setDarkMode] = useState(localStorage.getItem('dark'));
 
     const handleClick = () => {
         setClicked(!clicked);
     };
 
-    const toggleDarkMode = () => {
-        localStorage.setItem('dark', !darkMode);
-        setDarkMode(!darkMode);
-    };
-
-    useEffect(() => {
-        document.body.classList.toggle('dark-mode');
-    }, [darkMode])
-
     const getNavItem = (item, index) => {
-        const navItem = (<Link to={item.url} className={item.cName}>
-            <li key={index} onClick={handleClick}>
+        const navItem = (<Link key={index} to={item.url} className={item.cName}>
+            <li onClick={handleClick}>
                 <div>
                     {item.title}
                 </div>
