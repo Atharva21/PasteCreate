@@ -14,21 +14,24 @@ exports.storePaste = (req, res) => {
             if (req.body.data && req.body.data.length > 5000 || req.body.title > 500) {
                 res.status(400).send("Exceeded text limit");
             }
-            let private = true;
+            let private = true, email = undefined
+            if (req.userData) {
+                email = req.userData.email
+            }
             if (!('private' in req.body)) {
                 private = false;
             }
             const paste = new Paste({
                 title: req.body.title,
                 adddate: Date.now(),
-                email: req.userData.email,
+                email: email,
                 data: req.body.data,
                 url: urlString,
                 private: private
             });
             paste.save()
                 .then(result => {
-                    res.send("Success");
+                    res.send(`Your paste is saved at ${process.env.DOMAIN}/${urlString}`);
                 }).catch(err => {
                     res.status(500).send("Some error saving paste " + err);
                 });

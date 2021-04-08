@@ -8,7 +8,7 @@ const auth = require("../utils/auth");
 const router = express.Router();
 
 router.get('/my-pastes', auth.authenticateRequest, pasteController.getMyPastes);
-router.post('/save-paste', auth.authenticateRequest, pasteController.storePaste);
+router.post('/save-paste', auth.softAuthenticate, pasteController.storePaste);
 router.post('/delete-paste', auth.authenticateRequest, pasteController.deletePaste);
 router.get('/:pasteUrl', auth.softAuthenticate, pasteController.getPasteFromUrl);
 

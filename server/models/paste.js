@@ -17,7 +17,7 @@ const pasteSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     data: {
         type: String,
