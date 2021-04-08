@@ -17,8 +17,8 @@ export const MenuItems = [
         title: 'Create new paste',
         url: '/new',
         cName: 'nav-links',
-        login: true,
-        showAlways: false
+        login: false,
+        showAlways: true
     },
     {
         title: 'Logout',
