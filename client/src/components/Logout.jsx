@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import "../css/Main.css";
 const Logout = ({ setIsSignedIn }) => {
     useEffect(() => {
-        localStorage.clear();
+        localStorage.removeItem('name')
+        localStorage.removeItem('token')
         setIsSignedIn(false);
     }, [setIsSignedIn]);
     return (

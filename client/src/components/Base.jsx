@@ -35,9 +35,13 @@ const Base = () => {
                 setIsSignedIn(true)
             } else {
                 setIsSignedIn(true)
+                localStorage.removeItem('name')
+                localStorage.removeItem('token')
             }
         } catch (err) {
             setIsSignedIn(false)
+            localStorage.removeItem('name')
+            localStorage.removeItem('token')
         }
     };
 
