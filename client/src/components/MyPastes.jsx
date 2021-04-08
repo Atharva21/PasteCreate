@@ -74,7 +74,7 @@ const MyPastes = () => {
     };
 
     const handleCopyUrl = (url) => {
-        const completeUrl = process.env.DOMAIN + "/" + url;
+        const completeUrl = process.env.REACT_APP_DOMAIN + "/" + url;
         navigator.clipboard.writeText(completeUrl);
         swal("Link copied to clipboard");
     };
