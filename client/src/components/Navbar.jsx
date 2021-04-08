@@ -76,7 +76,7 @@ const Header = ({ isSignedIn, setIsSignedIn }) => {
                 <Route path="/home" component={HomePage}>
                 </Route>
                 <Route path="/new">
-                    <NewPaste />
+                    <NewPaste isSignedIn={isSignedIn} />
                 </Route>
                 <Route exact={true} path="/" component={HomePage}>
                 </Route>
