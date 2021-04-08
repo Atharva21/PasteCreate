@@ -1,12 +1,29 @@
+.homepage-text {
+    margin: 10px;
+    text-align: center;
+    font-size: 1em;
+}
+
 .homepage-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 86vh;
+    height: 80vh;
 }
-.homepage-text {
-    margin: 10px;
-    text-align: center;
-    font-size: 1.8em;
+
+@media screen and (min-width: 760px) {
+    .homepage-text {
+        margin: 10px;
+        text-align: center;
+        font-size: 1.8em;
+    }
+    .homepage-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 88vh;
+    }
 }
+
