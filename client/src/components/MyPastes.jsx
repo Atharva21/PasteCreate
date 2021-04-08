@@ -115,8 +115,8 @@ const MyPastes = () => {
         <div>
             <div className='pastes-container'>
                 {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
-                    <Fragment>
-                        <div key={index} className='paste' >
+                    <Fragment key={index}>
+                        <div className='paste' >
                             <h2>{item.title.slice(0, 50)}</h2>
                             <div>
                                 {item.data.slice(0, 200) + "..."}
