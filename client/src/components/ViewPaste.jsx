@@ -7,6 +7,7 @@ import "../css/MyPastes.css";
 import swal from "sweetalert";
 const ViewPaste = (props) => {
     const [currentPaste, setCurrentPaste] = useState([]);
+    const [isPasteLoading, setIsPasteLoading] = useState(true);
 
     useEffect(() => {
         let config = {
@@ -19,9 +20,11 @@ const ViewPaste = (props) => {
             .then((res) => {
                 if (res.status === 200) {
                     setCurrentPaste(res.data)
+                    setIsPasteLoading(false)
                 }
             }).catch(err => {
                 console.log(err);
+                setIsPasteLoading(false)
             });
         return () => {
             setCurrentPaste([])
@@ -35,7 +38,7 @@ const ViewPaste = (props) => {
 
     return (
         <div>
-            {currentPaste.length === 0 ? (
+            {!isPasteLoading && currentPaste.length === 0 ? (
                 <div className='flex-center'>
                     <h1>Paste not found! <i className='fas fa-frown'></i></h1>
                 </div>
