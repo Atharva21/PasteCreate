@@ -57,6 +57,19 @@ exports.signIn = (req, res) => {
             res.status(403).send("Invalid credentials");
         }
     });
+};
 
+exports.isLoggedIn = (req, res) => {
+    const authorization = req.headers['authorization'];
+    if (!authorization) {
+        res.status(401).json("Unauthorized user");
+    }
+    try {
+        const token = authorization.split(" ")[1];
+        const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+        res.send(200).json("Authorized");
+    } catch (err) {
+        res.status(401).json("Unauthorized user");
+    }
 };
 
