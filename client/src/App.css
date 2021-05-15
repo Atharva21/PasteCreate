@@ -9,3 +9,23 @@
   background-color: black;
   color:white;
 }
+
+.spinner {
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+#webpage-footer{
+  position: fixed;
+  bottom: 0;
+  background-color: #6668f4;
+  height:40px;
+  width: 100vw;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
