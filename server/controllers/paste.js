@@ -31,7 +31,7 @@ exports.storePaste = (req, res) => {
             });
             paste.save()
                 .then(result => {
-                    res.send(`Your paste is saved at ${process.env.DOMAIN}/${urlString}`);
+                    res.send(`${process.env.DOMAIN}/${urlString}`);
                 }).catch(err => {
                     res.status(500).send("Some error saving paste " + err);
                 });
