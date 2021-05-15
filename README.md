@@ -7,7 +7,10 @@ A minimal paste storing website with private pastes and more!
       REACT_APP_SERVER=http://localhost:3001/
       REACT_APP_DOMAIN=http://pastecreate.com
       
-      Run npm start to start dev server
+* Start dev server
+      
+      npm install
+      npm start
 
 ## Setting up server (backend)
  * Create following variable in .env file
@@ -17,7 +20,10 @@ A minimal paste storing website with private pastes and more!
         TOKEN_SECRET=notsosecretanymore
         DOMAIN=http://localhost:3000
         
-        node index.js to start dev server
+ * Start dev server
+           
+        npm install
+        node index.js
         
 
 
