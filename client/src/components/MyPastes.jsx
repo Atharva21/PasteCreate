@@ -1,15 +1,19 @@
 import { useEffect, useState, Fragment } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import "../css/MyPastes.css";
 import "../css/Main.css";
 import { Button } from "./Button";
 import swal from "sweetalert";
+import { useLoader, useUpdateLoader } from "./LoadingContext";
+import Spinner from "./Spinner";
+import CopyClipboard from "./utils/CopyClipboard";
 const MyPastes = () => {
-    const [isLoading, setIsLoading] = useState(true);
     const [curPaste, setCurPaste] = useState(false);
     const [myPastes, setMyPastes] = useState([]);
+    const isLoading = useLoader();
+    const setLoader = useUpdateLoader();
     useEffect(() => {
+        setLoader(true)
         let config = {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -20,15 +24,14 @@ const MyPastes = () => {
                 const res = await axios.get(process.env.REACT_APP_SERVER + "paste/my-pastes", config);
                 if (res.status === 200) {
                     setMyPastes(res.data);
-                } else {
-                    // show msg
+                    setLoader(false)
                 }
             }
-            getPasteData();
+            getPasteData()
         } catch (err) {
             console.log(err);
+            setLoader(false)
         }
-
     }, []);
 
     const handleDeletePaste = (data) => {
@@ -58,48 +61,21 @@ const MyPastes = () => {
                             } else {
                                 swal("Some error deleting your paste");
                             }
-                            setIsLoading(false);
                         }
                         deletePasteData();
                     } catch (err) {
                         console.log(err);
-                        setIsLoading(false);
                     }
                     swal("Poof! Your paste has been deleted!", {
                         icon: "success",
                     });
                 }
             });
-
     };
-
-    const copyToClipboard = (textToCopy) => {
-        // navigator clipboard api needs a secure context (https)
-        if (navigator.clipboard && window.isSecureContext) {
-            // navigator clipboard api method'
-            return navigator.clipboard.writeText(textToCopy);
-        } else {
-            // text area method
-            let textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            // make the textarea out of viewport
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            return new Promise((res, rej) => {
-                // here the magic happens
-                document.execCommand('copy') ? res() : rej();
-                textArea.remove();
-            });
-        }
-    }
 
     const handleCopyUrl = (url) => {
         const completeUrl = process.env.REACT_APP_DOMAIN + "/" + url;
-        copyToClipboard(completeUrl)
+        CopyClipboard(completeUrl)
         swal("Link copied to clipboard");
     };
 
@@ -113,54 +89,57 @@ const MyPastes = () => {
 
     return (
         <div>
-            <div className='pastes-container'>
-                {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
-                    <Fragment key={index}>
-                        <div className='paste' >
-                            <h2>{item.title.slice(0, 50)}</h2>
-                            <div>
-                                {item.data.slice(0, 200) + "..."}
+            {isLoading === true && <Spinner />}
+            {isLoading === false &&
+                <div className='pastes-container'>
+                    {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
+                        <Fragment key={index}>
+                            <div className='paste' >
+                                <h2>{item.title.slice(0, 50)}</h2>
+                                <div>
+                                    {item.data.slice(0, 200) + "..."}
+                                </div>
+                                <div className='my-paste-btn-container'>
+                                    <Button text='View' buttonStyle='btn--outline' onClick={(e) => { handleViewPaste(item, e) }} />
+                                    <Button text='Delete' buttonStyle='btn--outline' onClick={(e) => { handleDeletePaste(item._id, e) }} />
+                                    <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(item.url) }}
+                                    />
+                                </div>
+                                <div>
+                                    <p>{item.private && ('Note: Paste is private')}</p>
+                                </div>
                             </div>
-                            <div className='my-paste-btn-container'>
-                                <Button text='View' buttonStyle='btn--outline' onClick={(e) => { handleViewPaste(item, e) }} />
-                                <Button text='Delete' buttonStyle='btn--outline' onClick={(e) => { handleDeletePaste(item._id, e) }} />
-                                <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(item.url) }}
-                                />
-                            </div>
-                            <div>
-                                <p>{item.private && ('Note: Paste is private')}</p>
-                            </div>
-                        </div>
-                    </Fragment>
-                )) : (
-                    <Fragment>
-                        {myPastes.length === 0 && !isLoading ? (
-                            <div className='flex-center'>
-                                <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
-                            </div>
-                        ) : (
-                            <Fragment>
-                                {isLoading && curPaste ? (
-                                    <Fragment>
-                                        <i className='fa fa-window-close' onClick={
-                                            clearCurrentPaste
-                                        }></i>
-                                        < div id={Date.now()} className='paste' >
-                                            {curPaste.data}
-                                            <div className='my-paste-btn-container'>
-                                                <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
-                                                />
+                        </Fragment>
+                    )) : (
+                        <Fragment>
+                            {myPastes.length === 0 ? (
+                                <div className='flex-center'>
+                                    <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
+                                </div>
+                            ) : (
+                                <Fragment>
+                                    {curPaste ? (
+                                        <Fragment>
+                                            <i className='fa fa-window-close' onClick={
+                                                clearCurrentPaste
+                                            }></i>
+                                            < div id={Date.now()} className='paste' >
+                                                {curPaste.data}
+                                                <div className='my-paste-btn-container'>
+                                                    <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Fragment>
-                                ) : ("")}
-                            </Fragment>
-                        )}
+                                        </Fragment>
+                                    ) : ("")}
+                                </Fragment>
+                            )}
 
-                    </Fragment>
-                )
-                }
-            </div >
+                        </Fragment>
+                    )
+                    }
+                </div >
+            }
         </div >
     )
 };

@@ -1,11 +1,16 @@
 import "../css/NewPaste.css";
 import { Button } from "./Button";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
-const NewPaste = ({ isSignedIn }) => {
-    const [isPrivate, setIsPrivate] = React.useState(false);
-    const [inputFields, setInputFields] = React.useState({});
+import { useLoader, useUpdateLoader } from "./LoadingContext";
+import Spinner from "./Spinner";
+import CopyClipboard from "./utils/CopyClipboard";
+const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
+    const [isPrivate, setIsPrivate] = React.useState(false)
+    const [inputFields, setInputFields] = React.useState({})
+    const isLoading = useLoader()
+    const setLoader = useUpdateLoader()
     const handlePrivateCheckBox = (e) => {
         setInputFields(prev => {
             const target = e.target;
@@ -14,11 +19,12 @@ const NewPaste = ({ isSignedIn }) => {
                 [target.name]: !isPrivate
             }
         });
-        setIsPrivate(!isPrivate);
+        setIsPrivate(!isPrivate)
     }
     const submitNewPaste = async (e) => {
-        e.preventDefault();
-        e.target.reset();
+        e.preventDefault()
+        e.target.reset()
+        setLoader(true)
         try {
             const result = await axios.post(process.env.REACT_APP_SERVER + "paste/save-paste", {
                 title: inputFields.title,
@@ -29,11 +35,14 @@ const NewPaste = ({ isSignedIn }) => {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 });
             if (result.status === 200) {
-                swal(result.data, "", "success");
-                setInputFields({});
+                swal(`Your paste URL has been copied to your clipboard ${result.data}`, "", "success")
+                CopyClipboard(result.data)
+                setInputFields({})
             }
+            setLoader(false)
         } catch (err) {
             console.log(err);
+            setLoader(false)
         }
     };
 
@@ -46,8 +55,34 @@ const NewPaste = ({ isSignedIn }) => {
             }
         });
     }
+
+    const checkLoginStatus = async () => {
+        try {
+            const result = await axios.post(process.env.REACT_APP_SERVER + "account/logged-in", {},
+                {
+                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+                });
+            if (result.status === 200) {
+                setIsSignedIn(true)
+            } else {
+                setIsSignedIn(true)
+                localStorage.removeItem('name')
+                localStorage.removeItem('token')
+            }
+        } catch (err) {
+            setIsSignedIn(false)
+            localStorage.removeItem('name')
+            localStorage.removeItem('token')
+        }
+    };
+
+    useEffect(() => {
+        checkLoginStatus()
+    }, []);
+
     return (
         <React.Fragment>
+            {isLoading === true && <Spinner />}
             <form className='new-paste-container' onSubmit={submitNewPaste}>
                 <textarea placeholder="Paste your text here" id="text-paste-area" name="paste" onChange={(e) => handleChangeInputField(e)} />
                 <label htmlFor="title">Title</label>
