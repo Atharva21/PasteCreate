@@ -56,7 +56,9 @@ const MyPastes = () => {
                             }, config);
                             if (res.status === 200) {
                                 const pastes = myPastes.filter(paste => paste._id !== data);
-                                swal("Your paste has been deleted");
+                                swal("Poof! Your paste has been deleted!", {
+                                    icon: "success",
+                                });
                                 setMyPastes(pastes);
                             } else {
                                 swal("Some error deleting your paste");
@@ -66,9 +68,6 @@ const MyPastes = () => {
                     } catch (err) {
                         console.log(err);
                     }
-                    swal("Poof! Your paste has been deleted!", {
-                        icon: "success",
-                    });
                 }
             });
     };
