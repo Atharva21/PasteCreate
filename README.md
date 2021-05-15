@@ -1,9 +1,23 @@
 # PasteCreate
 A minimal paste storing website with private pastes and more!
 
-Create following variables in .env file 
-REACT_APP_SERVER=http://localhost:3001/ <br/>
-REACT_APP_DOMAIN=http://pastecreate.com <br/>
+## Setting up client (frontend)
+* Create following variables in .env file 
 
-Run npm start to start dev server
+      REACT_APP_SERVER=http://localhost:3001/
+      REACT_APP_DOMAIN=http://pastecreate.com
+      
+      Run npm start to start dev server
+
+## Setting up server (backend)
+ * Create following variable in .env file
+    
+        PORT=3001
+        MONGODB_URL=URL_HERE
+        TOKEN_SECRET=notsosecretanymore
+        DOMAIN=http://localhost:3000
+        
+        node index.js to start dev server
+        
+
 
