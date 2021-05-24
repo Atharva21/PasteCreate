@@ -18,6 +18,7 @@
 }
 
 #webpage-footer{
+  color:white;
   position: fixed;
   bottom: 0;
   background: linear-gradient(
@@ -30,4 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.footer-heart {
+  color:red !important;
 }

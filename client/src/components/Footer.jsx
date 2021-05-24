@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <div id="webpage-footer">
             <span>
-                Made with <i style={{ color: 'red' }} className="fas fa-heart"></i> and Javascript
+                Made with <i className="fas fa-heart footer-heart"></i> and Javascript
             </span>
         </div >
     )
