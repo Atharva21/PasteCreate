@@ -36,3 +36,10 @@
         white-space:pre-line;
     }
 }
+
+@media screen and (min-width: 960px) {
+    .fa-window-close {
+        position: relative;
+        right: 4.2em;
+    }
+}
