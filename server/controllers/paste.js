@@ -11,7 +11,9 @@ exports.storePaste = (req, res) => {
     const urlString = utils.randomString(7);
     Paste.find({ url: urlString }, (err, result) => {
         if (result.length === 0) {
-            if (req.body.data && req.body.data.length > 5000 || req.body.title > 500) {
+            console.log('Logging request body', req.body);
+            const { title, data: pasteData } = req.body
+            if (pasteData.length > 5000 || title.length > 500) {
                 res.status(400).send("Exceeded text limit");
             }
             let private = true, email = undefined
@@ -22,10 +24,10 @@ exports.storePaste = (req, res) => {
                 private = false;
             }
             const paste = new Paste({
-                title: req.body.title,
+                title: title,
                 adddate: Date.now(),
                 email: email,
-                data: req.body.data,
+                data: pasteData,
                 url: urlString,
                 private: private
             });
