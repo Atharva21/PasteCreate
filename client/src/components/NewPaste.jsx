@@ -5,7 +5,6 @@ import axios from "axios";
 import swal from 'sweetalert';
 import { useLoader, useUpdateLoader } from "./LoadingContext";
 import Spinner from "./Spinner";
-import CopyClipboard from "./utils/CopyClipboard";
 const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
     const [isPrivate, setIsPrivate] = React.useState(false)
     const [inputFields, setInputFields] = React.useState({})
@@ -35,8 +34,7 @@ const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 });
             if (result.status === 200) {
-                swal(`Your paste URL has been copied to your clipboard ${result.data}`, "", "success")
-                CopyClipboard(result.data)
+                swal(`Please copy URL or it will be lost https://${result.data}`, "", "success")
                 setInputFields({})
             }
             setLoader(false)
@@ -55,30 +53,6 @@ const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
             }
         });
     }
-
-    const checkLoginStatus = async () => {
-        try {
-            const result = await axios.post(process.env.REACT_APP_SERVER + "account/logged-in", {},
-                {
-                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
-                });
-            if (result.status === 200) {
-                setIsSignedIn(true)
-            } else {
-                setIsSignedIn(true)
-                localStorage.removeItem('name')
-                localStorage.removeItem('token')
-            }
-        } catch (err) {
-            setIsSignedIn(false)
-            localStorage.removeItem('name')
-            localStorage.removeItem('token')
-        }
-    };
-
-    useEffect(() => {
-        checkLoginStatus()
-    }, []);
 
     return (
         <React.Fragment>
