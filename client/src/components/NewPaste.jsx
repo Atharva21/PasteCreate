@@ -5,7 +5,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import { useLoader, useUpdateLoader } from "./LoadingContext";
 import Spinner from "./Spinner";
-const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
+const NewPaste = ({ isSignedIn }) => {
     const [isPrivate, setIsPrivate] = React.useState(false)
     const [inputFields, setInputFields] = React.useState({})
     const isLoading = useLoader()
@@ -34,7 +34,10 @@ const NewPaste = ({ isSignedIn, setIsSignedIn }) => {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 });
             if (result.status === 200) {
-                swal(`Please copy URL or it will be lost https://${result.data}`, "", "success")
+                if (!isSignedIn)
+                    swal(`Please copy the URL ${result.data}`, "", "success")
+                else
+                    swal(`Paste saved!`, "", "success")
                 setInputFields({})
             }
             setLoader(false)
