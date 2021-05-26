@@ -1,4 +1,5 @@
 import "../css/Homepage.css";
+import Footer from "./Footer";
 const HomePage = () => {
     return (
         <div className='homepage-container'>
@@ -8,6 +9,7 @@ const HomePage = () => {
             <div className='homepage-text'>
                 <h2>A free paste storing service</h2>
             </div>
+            <Footer />
         </div>
     )
 };
