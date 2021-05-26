@@ -5,10 +5,10 @@ const Spinner = () => {
   return (
     <div className='spinner'>
       <Loader
-        type="Hearts"
+        type="MutatingDots"
         color="#00BFFF"
-        height={200}
-        width={200}
+        height={100}
+        width={100}
         timeout={20000} // 20 seconds 
       />
     </div>
