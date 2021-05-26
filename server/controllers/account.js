@@ -34,7 +34,7 @@ exports.signUp = (req, res) => {
 };
 
 const generateAccessToken = (email) => {
-    return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: 1800 });
+    return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: 2629746 });
 }
 
 exports.signIn = (req, res) => {
