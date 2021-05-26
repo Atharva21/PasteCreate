@@ -5,10 +5,10 @@ import axios from "axios";
 import "../css/Main.css";
 import "../css/MyPastes.css";
 import swal from "sweetalert";
+import Spinner from "./Spinner";
 const ViewPaste = (props) => {
     const [currentPaste, setCurrentPaste] = useState([]);
     const [isPasteLoading, setIsPasteLoading] = useState(true);
-
     useEffect(() => {
         let config = {
             headers: {
@@ -38,6 +38,7 @@ const ViewPaste = (props) => {
 
     return (
         <div>
+            {isPasteLoading && <Spinner />}
             {!isPasteLoading && currentPaste.length === 0 ? (
                 <div className='flex-center'>
                     <h1>Paste not found! <i className='fas fa-frown'></i></h1>
