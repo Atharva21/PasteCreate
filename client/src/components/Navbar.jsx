@@ -40,7 +40,7 @@ const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
     return (
         <Router>
             <nav className="NavbarItems">
-                <Link to="/home">
+                <Link to="/">
                     <h1 className="navbar-logo">PasteCreate <i className="fas fa-clipboard"></i>
                     </h1>
                 </Link>
