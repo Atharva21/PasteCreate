@@ -24,7 +24,8 @@ const SignIn = () => {
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user', res.data.id)
-                authCtx.login(res.data.token, res.data.expiry);
+                const expiryTime = new Date(new Date().getTime() + (+res.data.expiry * 1000));
+                authCtx.login(res.data.token, expiryTime.toISOString());
                 history.push("/");
             } else {
                 setLoader(false)
