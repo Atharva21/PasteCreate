@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+const tokenExpiry = 86400;
+
 exports.signUp = (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
@@ -34,7 +37,7 @@ exports.signUp = (req, res) => {
 };
 
 const generateAccessToken = (email) => {
-    return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: 2629746 });
+    return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: tokenExpiry });
 }
 
 exports.signIn = (req, res) => {
@@ -48,7 +51,7 @@ exports.signIn = (req, res) => {
             const dbPassword = result[0].password;
             bcrypt.compare(password, dbPassword, (err, passwordsMatch) => {
                 if (passwordsMatch === true) {
-                    res.json({ 'token': generateAccessToken(email), id: result[0]._id, name: result[0].name });
+                    res.json({ 'expiry':  tokenExpiry, 'token': generateAccessToken(email), id: result[0]._id, name: result[0].name });
                 } else {
                     res.status(403).send("Invalid credentials");
                 }
