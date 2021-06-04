@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useContext } from "react";
 import axios from "axios";
 import "../css/MyPastes.css";
 import "../css/Main.css";
@@ -7,16 +7,19 @@ import swal from "sweetalert";
 import { useLoader, useUpdateLoader } from "./LoadingContext";
 import Spinner from "./Spinner";
 import CopyClipboard from "./utils/CopyClipboard";
+import AuthContext from "../store/auth-context";
+
 const MyPastes = () => {
     const [curPaste, setCurPaste] = useState(false);
     const [myPastes, setMyPastes] = useState([]);
     const isLoading = useLoader();
     const setLoader = useUpdateLoader();
+    const authCtx = useContext(AuthContext);
     useEffect(() => {
         setLoader(true)
         let config = {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + authCtx.token
             }
         }
         try {
@@ -29,10 +32,9 @@ const MyPastes = () => {
             }
             getPasteData()
         } catch (err) {
-            console.log(err);
             setLoader(false)
         }
-    }, []);
+    }, [setLoader, authCtx.token]);
 
     const handleDeletePaste = (data) => {
         swal({
@@ -46,7 +48,7 @@ const MyPastes = () => {
                 if (willDelete) {
                     let config = {
                         headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                            'Authorization': 'Bearer ' +  authCtx.token
                         }
                     }
                     try {

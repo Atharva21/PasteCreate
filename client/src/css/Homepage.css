@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 79vh;
 }
 
 @media screen and (min-width: 760px) {
@@ -23,7 +23,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 83vh;
+        height: 79vh;
     }
 }
 
