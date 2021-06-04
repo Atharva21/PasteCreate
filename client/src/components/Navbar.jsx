@@ -12,11 +12,16 @@ import SignUp from "./SignUp";
 import ViewPaste from "./ViewPaste";
 import { MenuItems } from "./MenuItems";
 import "../css/NavBar.css";
+import { useContext } from "react";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Logout from "./Logout";
-const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
+import AuthContext from "../store/auth-context";
+const Header = ({ toggleDarkMode, darkMode }) => {
     const [clicked, setClicked] = useState(false);
+    const authCtx = useContext(AuthContext);
+
+    const isLoggedIn = authCtx.isLoggedIn;
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -33,7 +38,7 @@ const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
         if (item.showAlways) {
             return navItem;
         }
-        if (item.login === isSignedIn) {
+        if (item.login === isLoggedIn) {
             return navItem;
         }
     }
@@ -59,7 +64,7 @@ const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
             </nav >
             <Switch>
                 <Route path="/sign-in" >
-                    <SignIn setIsSignedIn={setIsSignedIn} />
+                    <SignIn />
                 </Route>
                 <Route path="/sign-up" component={SignUp}>
                 </Route>
@@ -67,12 +72,12 @@ const Header = ({ isSignedIn, setIsSignedIn, toggleDarkMode, darkMode }) => {
                 <Route path="/home" component={HomePage}>
                 </Route>
                 <Route path="/new">
-                    <NewPaste isSignedIn={isSignedIn} />
+                    <NewPaste />
                 </Route>
                 <Route exact={true} path="/" component={HomePage}>
                 </Route>
                 <Route exact={true} path="/logout">
-                    <Logout setIsSignedIn={setIsSignedIn} />
+                    <Logout />
                 </Route>
                 <Route path="/:url?" component={ViewPaste}>
                 </Route>

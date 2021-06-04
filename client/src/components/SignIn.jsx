@@ -3,12 +3,15 @@ import { Button } from "./Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useLoader, useUpdateLoader } from "./LoadingContext";
+import { useContext } from "react";
 import swal from "sweetalert";
 import Spinner from "./Spinner";
-const SignIn = ({ setIsSignedIn }) => {
+import AuthContext from "../store/auth-context";
+const SignIn = () => {
     let history = useHistory()
     const isLoading = useLoader()
     const setLoader = useUpdateLoader()
+    const authCtx = useContext(AuthContext);
     const handleSignIn = async (e) => {
         e.preventDefault();
         const payload = {
@@ -21,8 +24,8 @@ const SignIn = ({ setIsSignedIn }) => {
             if (res.status === 200) {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user', res.data.id)
-                localStorage.setItem('name', res.data.name)
-                setIsSignedIn(true);
+                const expiryTime = new Date(new Date().getTime() + (+res.data.expiry * 1000));
+                authCtx.login(res.data.token, expiryTime.toISOString());
                 history.push("/");
             } else {
                 setLoader(false)

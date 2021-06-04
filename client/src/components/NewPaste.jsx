@@ -1,15 +1,19 @@
 import "../css/NewPaste.css";
 import { Button } from "./Button";
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useLoader, useUpdateLoader } from "./LoadingContext";
 import Spinner from "./Spinner";
-const NewPaste = ({ isSignedIn }) => {
+import AuthContext from "../store/auth-context";
+const NewPaste = () => {
     const [isPrivate, setIsPrivate] = React.useState(false)
     const [inputFields, setInputFields] = React.useState({})
     const isLoading = useLoader()
     const setLoader = useUpdateLoader()
+    const authCtx = useContext(AuthContext);
+    const isLoggedIn = authCtx.isLoggedIn;
+
     const handlePrivateCheckBox = (e) => {
         setInputFields(prev => {
             const target = e.target;
@@ -34,7 +38,7 @@ const NewPaste = ({ isSignedIn }) => {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 });
             if (result.status === 200) {
-                if (!isSignedIn)
+                if (!isLoggedIn)
                     swal(`Please copy the URL ${result.data}`, "", "success")
                 else
                     swal(`Paste saved!`, "", "success")
@@ -64,7 +68,7 @@ const NewPaste = ({ isSignedIn }) => {
                 <textarea placeholder="Paste your text here" id="text-paste-area" name="paste" onChange={(e) => handleChangeInputField(e)} />
                 <label htmlFor="title">Title</label>
                 <input type="text" name="title" id="title" onChange={(e) => handleChangeInputField(e)} />
-                {isSignedIn && <div className='private-paste-checkbox-container'>
+                {isLoggedIn && <div className='private-paste-checkbox-container'>
                     <label htmlFor="private">Private paste</label>
                     <input type="checkbox" name="private" id="private" onChange={handlePrivateCheckBox} defaultChecked={isPrivate} />
                 </div>}
