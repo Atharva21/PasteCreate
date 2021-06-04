@@ -113,7 +113,7 @@ const MyPastes = () => {
                         </Fragment>
                     )) : (
                         <Fragment>
-                            {myPastes.length === 0 ? (
+                            {myPastes.length === 0 && isLoading === false  ? (
                                 <div className='flex-center'>
                                     <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
                                 </div>
