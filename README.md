@@ -1,7 +1,7 @@
 # PasteCreate
 A minimal paste storing website with private pastes and more!
 
-## Setting up client (frontend)
+## Setting up client frontend
 * Create following variables in .env file 
 
       REACT_APP_SERVER=http://localhost:3001/
@@ -12,7 +12,7 @@ A minimal paste storing website with private pastes and more!
       npm install
       npm start
 
-## Setting up server (backend)
+## Setting up backend
  * Create following variable in .env file
     
         PORT=3001
