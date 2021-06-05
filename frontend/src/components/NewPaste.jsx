@@ -3,9 +3,10 @@ import { Button } from "./Button";
 import React, { useContext } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
-import { useLoader, useUpdateLoader } from "./LoadingContext";
 import Spinner from "./Spinner";
 import AuthContext from "../store/auth-context";
+import { useTheme } from "./context/ThemeContext";
+import { useLoader, useUpdateLoader } from "./context/LoadingContext.js";
 const NewPaste = () => {
     const [isPrivate, setIsPrivate] = React.useState(false)
     const [inputFields, setInputFields] = React.useState({})
@@ -13,6 +14,7 @@ const NewPaste = () => {
     const setLoader = useUpdateLoader()
     const authCtx = useContext(AuthContext);
     const isLoggedIn = authCtx.isLoggedIn;
+    const darkMode = useTheme();
 
     const handlePrivateCheckBox = (e) => {
         setInputFields(prev => {
@@ -61,12 +63,24 @@ const NewPaste = () => {
         });
     }
 
+    const newPasteContainerStyle = {
+        display: 'flex',
+        flexGrow: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '8px',
+        margin: '1rem 13rem',
+        height: '83vh',
+        backgroundColor: darkMode ? '#1a1919' : "white",
+    };
+
     return (
         <React.Fragment>
             {isLoading === true && <Spinner />}
-            <form className={styles.newPasteContainer} onSubmit={submitNewPaste}>
-                <textarea placeholder="Paste your text here" id={styles.pasteArea} name="paste" onChange={(e) => handleChangeInputField(e)} />
-                <ul >
+            <form onSubmit={submitNewPaste} style={newPasteContainerStyle}>
+                <textarea placeholder="Paste your text here" id={isLoggedIn ? styles.pasteAreaLoggedIn : styles.pasteAreaLoggedOut} name="paste" onChange={(e) => handleChangeInputField(e)} />
+                <ul className={styles.pasteDetailsForm}>
                     <li>
                         <label htmlFor="title" className={styles.label}>Title</label>
                         <input type="text" name="title" className={styles.label} onChange={(e) => handleChangeInputField(e)} />

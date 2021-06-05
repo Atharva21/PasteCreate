@@ -5,6 +5,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
 .dark-mode {
     background-color: #111111;
     color: white;

@@ -16,9 +16,12 @@ import { useContext } from "react";
 import { useState } from "react";
 import Logout from "./Logout";
 import AuthContext from "../store/auth-context";
-const NavBar = ({ toggleDarkMode, darkMode }) => {
+import {useTheme, useThemeUpdate} from "./context/ThemeContext.js";
+const NavBar = () => {
     const [clicked, setClicked] = useState(false);
     const authCtx = useContext(AuthContext);
+    const darkMode = useTheme();
+    const toggleDarkMode = useThemeUpdate();
 
     const isLoggedIn = authCtx.isLoggedIn;
 
