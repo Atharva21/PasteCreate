@@ -1,4 +1,4 @@
-import "../css/NewPaste.css";
+import styles from "../css/NewPaste.module.css";
 import { Button } from "./Button";
 import React, { useContext } from "react";
 import axios from "axios";
@@ -35,7 +35,7 @@ const NewPaste = () => {
                 private: inputFields.private
             },
                 {
-                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+                    headers: { 'Authorization': 'Bearer ' + authCtx.token }
                 });
             if (result.status === 200) {
                 if (!isLoggedIn)
@@ -64,15 +64,15 @@ const NewPaste = () => {
     return (
         <React.Fragment>
             {isLoading === true && <Spinner />}
-            <form className='new-paste-container' onSubmit={submitNewPaste}>
-                <textarea placeholder="Paste your text here" id="text-paste-area" name="paste" onChange={(e) => handleChangeInputField(e)} />
-                <label htmlFor="title">Title</label>
-                <input type="text" name="title" id="title" onChange={(e) => handleChangeInputField(e)} />
-                {isLoggedIn && <div className='private-paste-checkbox-container'>
+            <form className={styles.newPasteContainer} onSubmit={submitNewPaste}>
+                <textarea placeholder="Paste your text here" id={styles.pasteArea} name="paste" onChange={(e) => handleChangeInputField(e)} />
+                <label htmlFor="title" className={styles.label}>Title</label>
+                <input type="text" name="title" id={styles.title} onChange={(e) => handleChangeInputField(e)} />
+                {isLoggedIn && <div className={styles.privatePasteCheckboxContainer}>
                     <label htmlFor="private">Private paste</label>
-                    <input type="checkbox" name="private" id="private" onChange={handlePrivateCheckBox} defaultChecked={isPrivate} />
+                    <input type="checkbox" name="private" id={styles.private} onChange={handlePrivateCheckBox} defaultChecked={isPrivate} />
                 </div>}
-                <div className='submit-btn-paste'>
+                <div className={styles.submitPasteBtn}>
                     <Button text="Submit" buttonStyle='btn--outline' />
                 </div>
             </form>

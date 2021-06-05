@@ -1,38 +1,76 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .dark-mode {
-  background-color: #111111;
-  color:white;
+    background-color: #111111;
+    color: white;
 }
 
 .spinner {
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#webpage-footer{
-  color:white;
-  position: fixed;
-  bottom: 0;
-  background: linear-gradient(
-90deg
-, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-  height:40px;
-  width: 100vw;
-  text-align: center;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#webpage-footer {
+    color: white;
+    position: fixed;
+    bottom: 0;
+    background: linear-gradient( 90deg, rgb(110, 94, 254) 0%, rgba(73, 63, 252, 1) 100%);
+    height: 40px;
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-heart {
-  color:red !important;
+    color: red !important;
+}
+
+.fa-window-close {
+    font-size: 30px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+@media screen and (min-width: 960px) {
+    .fa-window-close {
+        position: relative;
+        right: 4.2em;
+    }
+}
+
+.fa-clipboard {
+    margin-left: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.fa-times {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.nav-links {
+    color: white;
+    text-decoration: none;
+    padding: 2rem 1rem;
+}
+
+.nav-links:hover {
+    background-color: #6d76f7;
+    background-position: 20px 20px;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+}
+
+.fa-bars {
+    color: #fff;
 }

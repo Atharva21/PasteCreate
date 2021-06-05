@@ -1,4 +1,4 @@
-import "../css/SignInSignUp.css";
+import styles from "../css/SignInSignUp.module.css";
 import { Button } from "./Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -41,13 +41,13 @@ const SignIn = () => {
             {isLoading &&
                 <Spinner />
             }
-            <div className='form-container'>
-                <form className="sign-up-form" onSubmit={handleSignIn}>
+            <div className={styles.formContainer}>
+                <form className={styles.signInForm} onSubmit={handleSignIn}>
                     <label htmlFor="email">Email</label>
-                    <input required type="email" name="email" id="email" className='form-item' />
+                    <input required type="email" name="email" id="email" className={styles.formItem}/>
                     <label htmlFor="password">Password</label>
-                    <input required type="password" name="password" id="password" className='form-item' />
-                    <Button text="Sign in" buttonStyle='btn--outline' className='form-item' />
+                    <input required type="password" name="password" id="password" className={styles.formItem}/>
+                    <Button text="Sign in" buttonStyle='btn--outline btn formBtn' className={styles.formItem} />
                 </form>
             </div>
         </>

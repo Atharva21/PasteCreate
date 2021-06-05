@@ -1,7 +1,7 @@
 import { useEffect, useState, Fragment, useContext } from "react";
 import axios from "axios";
-import "../css/MyPastes.css";
-import "../css/Main.css";
+import pageStyle from "../css/MyPastes.module.css";
+import commonStyles from "../css/Common.module.css";
 import { Button } from "./Button";
 import swal from "sweetalert";
 import { useLoader, useUpdateLoader } from "./LoadingContext";
@@ -92,15 +92,15 @@ const MyPastes = () => {
         <div>
             {isLoading === true && <Spinner />}
             {isLoading === false &&
-                <div className='pastes-container'>
+                <div className={pageStyle.pastesContainer}>
                     {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
                         <Fragment key={index}>
-                            <div className='paste' >
+                            <div className={pageStyle.paste} >
                                 <h2>{item.title.slice(0, 50)}</h2>
                                 <div>
                                     {item.data.slice(0, 200) + "..."}
                                 </div>
-                                <div className='my-paste-btn-container'>
+                                <div className={pageStyle.myPasteBtnContainer}>
                                     <Button text='View' buttonStyle='btn--outline' onClick={(e) => { handleViewPaste(item, e) }} />
                                     <Button text='Delete' buttonStyle='btn--outline' onClick={(e) => { handleDeletePaste(item._id, e) }} />
                                     <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(item.url) }}
@@ -114,7 +114,7 @@ const MyPastes = () => {
                     )) : (
                         <Fragment>
                             {myPastes.length === 0 && isLoading === false  ? (
-                                <div className='flex-center'>
+                                <div className={commonStyles.flexCenter}>
                                     <h1>Looks like you have no pastes <i className='fas fa-frown'></i></h1>
                                 </div>
                             ) : (
@@ -124,9 +124,9 @@ const MyPastes = () => {
                                             <i className='fa fa-window-close' onClick={
                                                 clearCurrentPaste
                                             }></i>
-                                            < div id={Date.now()} className='paste' >
+                                            < div id={Date.now()} className={pageStyle.paste} >
                                                 {curPaste.data}
-                                                <div className='my-paste-btn-container'>
+                                                <div className={pageStyle.myPasteBtnContainer}>
                                                     <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
                                                     />
                                                 </div>
