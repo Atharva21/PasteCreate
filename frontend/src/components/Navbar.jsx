@@ -52,13 +52,13 @@ const NavBar = ({ toggleDarkMode, darkMode }) => {
                 <div className={styles.menuIcon} onClick={handleClick}>
                     <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
-                <ul className={clicked ? `${styles.navMenu} active` : `${styles.navMenu}`}>
+                <ul className={clicked ? `${styles.navMenu} ${styles.active}` : `${styles.navMenu}`}>
                     {MenuItems.map((item, index) => {
                         return (
                             getNavItem(item, index)
                         )
                     })}
-                    <i className={darkMode ? `fas fa-sun ${styles.darkmodeToggler} ${styles.navLinks}` : `fas fa-moon ${styles.darkmodeToggler} ${styles.navLinks}`} onClick={toggleDarkMode}></i>
+                    <i className={darkMode ? `nav-links fas fa-sun ${styles.darkmodeToggler} ${styles.navLinks}` : ` nav-links fas fa-moon ${styles.darkmodeToggler} ${styles.navLinks}`} onClick={toggleDarkMode}></i>
                 </ul>
 
             </nav >

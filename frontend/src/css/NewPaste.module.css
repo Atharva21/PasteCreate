@@ -51,7 +51,7 @@ h2 {
 }
 
 @media screen and (max-width: 960px) {
-    #text-paste-area {
+    #pasteArea {
         width: 90vw;
         margin: 5px 0;
     }

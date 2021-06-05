@@ -16,13 +16,13 @@
     .homepageText {
         margin: 10px;
         text-align: center;
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
     .homepageContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 79vh;
+        height: 78vh;
     }
 }

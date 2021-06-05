@@ -54,3 +54,8 @@
     font-size: 20px;
     color: #6568F4;
 }
+
+.formBtn {
+    width: 143px;
+    margin: 30px auto !important;
+}

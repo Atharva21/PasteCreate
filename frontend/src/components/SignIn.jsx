@@ -47,7 +47,7 @@ const SignIn = () => {
                     <input required type="email" name="email" id="email" className={styles.formItem}/>
                     <label htmlFor="password">Password</label>
                     <input required type="password" name="password" id="password" className={styles.formItem}/>
-                    <Button text="Sign in" buttonStyle='btn--outline btn' className={styles.formItem} />
+                    <Button text="Sign in" buttonStyle='btn--outline btn formBtn' className={styles.formItem} />
                 </form>
             </div>
         </>
