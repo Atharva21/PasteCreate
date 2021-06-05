@@ -5,6 +5,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
 .dark-mode {
     background-color: #111111;
     color: white;
@@ -15,24 +19,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-#webpage-footer {
-    color: white;
-    position: fixed;
-    bottom: 0;
-    background: linear-gradient( 90deg, rgb(110, 94, 254) 0%, rgba(73, 63, 252, 1) 100%);
-    height: 40px;
-    width: 100vw;
-    text-align: center;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-heart {
-    color: red !important;
 }
 
 .fa-window-close {

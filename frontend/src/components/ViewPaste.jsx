@@ -7,7 +7,7 @@ import styles from "../css/MyPastes.module.css";
 import swal from "sweetalert";
 import Spinner from "./Spinner";
 import AuthContext from "../store/auth-context";
-import CopyClipboard from "./utils/CopyClipboard";
+import CopyClipboard from "./utils/CopyClipboard.js";
 const ViewPaste = () => {
     const [currentPaste, setCurrentPaste] = useState([]);
     const [isPasteLoading, setIsPasteLoading] = useState(true);

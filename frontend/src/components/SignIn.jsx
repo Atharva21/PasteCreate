@@ -2,7 +2,7 @@ import styles from "../css/SignInSignUp.module.css";
 import { Button } from "./Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useLoader, useUpdateLoader } from "./LoadingContext";
+import { useLoader, useUpdateLoader } from "./context/LoadingContext.js";
 import { useContext } from "react";
 import swal from "sweetalert";
 import Spinner from "./Spinner";
@@ -26,6 +26,7 @@ const SignIn = () => {
                 localStorage.setItem('user', res.data.id)
                 const expiryTime = new Date(new Date().getTime() + (+res.data.expiry * 1000));
                 authCtx.login(res.data.token, expiryTime.toISOString());
+                setLoader(false);
                 history.push("/");
             } else {
                 setLoader(false)

@@ -4,10 +4,11 @@ import pageStyle from "../css/MyPastes.module.css";
 import commonStyles from "../css/Common.module.css";
 import { Button } from "./Button";
 import swal from "sweetalert";
-import { useLoader, useUpdateLoader } from "./LoadingContext";
+import { useLoader, useUpdateLoader } from "./context/LoadingContext.js";
 import Spinner from "./Spinner";
-import CopyClipboard from "./utils/CopyClipboard";
+import CopyClipboard from "./utils/CopyClipboard.js";
 import AuthContext from "../store/auth-context";
+import { useTheme } from "./context/ThemeContext";
 
 const MyPastes = () => {
     const [curPaste, setCurPaste] = useState(false);
@@ -15,6 +16,7 @@ const MyPastes = () => {
     const isLoading = useLoader();
     const setLoader = useUpdateLoader();
     const authCtx = useContext(AuthContext);
+    const darkMode = useTheme();
     useEffect(() => {
         setLoader(true)
         let config = {
@@ -87,12 +89,16 @@ const MyPastes = () => {
     const handleViewPaste = (data) => {
         setCurPaste(data);
     };
+    
+    const backgroundStyle = {
+        backgroundColor: darkMode ? "#1a1919" : "white"
+    };
 
     return (
         <div>
             {isLoading === true && <Spinner />}
             {isLoading === false &&
-                <div className={pageStyle.pastesContainer}>
+                <div className={pageStyle.pastesContainer} style={backgroundStyle}>
                     {!curPaste && myPastes.length ? (myPastes.map((item, index) =>
                         <Fragment key={index}>
                             <div className={pageStyle.paste} >
