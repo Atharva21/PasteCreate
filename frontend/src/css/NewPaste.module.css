@@ -9,16 +9,27 @@
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    border-radius: 5px;
+    margin: 2rem 13rem;
+    height: 90vh;
+    background-color: #1a1919;
+}
+
+ul {
+    list-style: none;
 }
 
 #pasteArea {
-    width: 80vw;
-    height: 60vh;
+    width: 97%;
+    height: 67vh;
     overflow-y: scroll;
-    margin: 10px 0px;
     font-size: 1.5em;
     font-family: var(--input-font);
     outline: none;
+}
+
+#pasteDetailsForm {
+    margin-top: 25px;
 }
 
 h2 {
@@ -26,33 +37,20 @@ h2 {
 }
 
 .submitPasteBtn {
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-}
-
-#title {
-    margin-bottom: 1rem;
-    font-family: var(--input-font);
-    font-size: 1.3em;
-    outline: none;
-    width: 10em;
+    text-align: center;
 }
 
 .label {
     font-size: 1.4em;
-}
-
-#private {
-    margin-left: .7rem;
+    margin: 15px
 }
 
 .privatePasteCheckboxContainer {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 960px) {
-    #pasteArea {
-        width: 90vw;
-        margin: 5px 0;
+@media screen and (max-width: 1200px) {
+    .newPasteContainer {
+        margin: 2rem 1.2rem;
     }
 }
