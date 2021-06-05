@@ -16,7 +16,10 @@ export function ThemeProvider({ children }) {
     const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem('dark')))
 
     const toggleTheme = () => {
-        setDarkMode(prevMode => !prevMode);
+        setDarkMode(prevMode => {
+            localStorage.setItem('dark', JSON.stringify(!prevMode));
+            return !prevMode
+        });
     };
 
     useEffect(() => {
@@ -27,9 +30,9 @@ export function ThemeProvider({ children }) {
     }, [darkMode])
 
     return (
-        <ThemeContext.Provider value={darkMode} > 
+        <ThemeContext.Provider value={darkMode} >
             <ThemeUpdateContext.Provider value={toggleTheme}>
-            {children} 
+                {children}
             </ThemeUpdateContext.Provider>
         </ThemeContext.Provider>
     )

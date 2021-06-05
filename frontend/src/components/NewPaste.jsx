@@ -64,21 +64,13 @@ const NewPaste = () => {
     }
 
     const newPasteContainerStyle = {
-        display: 'flex',
-        flexGrow: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '8px',
-        margin: '1rem 13rem',
-        height: '83vh',
         backgroundColor: darkMode ? '#1a1919' : "white",
     };
 
     return (
         <React.Fragment>
             {isLoading === true && <Spinner />}
-            <form onSubmit={submitNewPaste} style={newPasteContainerStyle}>
+            <form onSubmit={submitNewPaste} className={styles.newPasteContainer} style={newPasteContainerStyle}>
                 <textarea placeholder="Paste your text here" id={isLoggedIn ? styles.pasteAreaLoggedIn : styles.pasteAreaLoggedOut} name="paste" onChange={(e) => handleChangeInputField(e)} />
                 <ul className={styles.pasteDetailsForm}>
                     <li>

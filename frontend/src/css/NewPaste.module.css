@@ -11,7 +11,6 @@
     border-radius: 8px;
     margin: 1rem 13rem;
     height: 83vh;
-    background-color: #1a1919;
 }
 
 ul {
@@ -55,6 +54,6 @@ h2 {
 
 @media screen and (max-width: 1200px) {
     .newPasteContainer {
-        margin: 2rem 1.2rem;
+        margin: 2rem 1.2rem !important;
     }
 }
