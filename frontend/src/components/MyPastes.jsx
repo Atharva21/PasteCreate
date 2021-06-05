@@ -82,6 +82,11 @@ const MyPastes = () => {
         swal("Link copied to clipboard");
     };
 
+    const handleCopyText = (text) => {
+        CopyClipboard(text)
+        swal("Text copied to clipboard");
+    };
+
     const clearCurrentPaste = () => {
         setCurPaste(false);
     }
@@ -104,7 +109,7 @@ const MyPastes = () => {
                             <div className={pageStyle.paste} >
                                 <h2>{item.title.slice(0, 50)}</h2>
                                 <div>
-                                    {item.data.slice(0, 200) + "..."}
+                                    <pre>{item.data.slice(0, 200) + "..."}</pre>
                                 </div>
                                 <div className={pageStyle.myPasteBtnContainer}>
                                     <Button text='View' buttonStyle='btn--outline' onClick={(e) => { handleViewPaste(item, e) }} />
@@ -131,9 +136,9 @@ const MyPastes = () => {
                                                 clearCurrentPaste
                                             }></i>
                                             < div id={Date.now()} className={pageStyle.paste} >
-                                                {curPaste.data}
+                                                <pre>{curPaste.data}</pre>
                                                 <div className={pageStyle.myPasteBtnContainer}>
-                                                    <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyUrl(curPaste.url) }}
+                                                    <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline' onClick={() => { handleCopyText(curPaste.data) }}
                                                     />
                                                 </div>
                                             </div>
