@@ -4,7 +4,6 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import HomePage from "./HomePage";
 import MyPastes from "./MyPastes";
 import NewPaste from "./NewPaste";
 import SignIn from "./SignIn";
@@ -69,12 +68,10 @@ const NavBar = ({ toggleDarkMode, darkMode }) => {
                 <Route path="/sign-up" component={SignUp}>
                 </Route>
                 <Route exact path="/my-pastes" component={MyPastes} />
-                <Route path="/home" component={HomePage}>
-                </Route>
                 <Route path="/new">
                     <NewPaste />
                 </Route>
-                <Route exact={true} path="/" component={HomePage}>
+                <Route exact={true} path="/" component={NewPaste}>
                 </Route>
                 <Route exact={true} path="/logout">
                     <Logout />

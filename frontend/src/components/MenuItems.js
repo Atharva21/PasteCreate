@@ -1,23 +1,15 @@
 export const MenuItems = [{
-        title: 'Home',
-        url: '/',
-        cName: 'nav-links',
-        login: false,
-        showAlways: true
-    },
-    {
-        title: 'My pastes',
-        url: '/my-pastes',
-        cName: 'nav-links',
-        login: true,
-        showAlways: false
-    },
-    {
         title: 'Create new paste',
         url: '/new',
         cName: 'nav-links',
         login: false,
         showAlways: true
+    }, {
+        title: 'My pastes',
+        url: '/my-pastes',
+        cName: 'nav-links',
+        login: true,
+        showAlways: false
     },
     {
         title: 'Logout',
