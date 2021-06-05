@@ -50,10 +50,10 @@
         width: 100%;
         height: max-content;
         position: absolute;
-        top: 80px;
+        top: 110px;
         left: -100%;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: all 0.2s ease;
     }
     .navMenu.active {
         background: #6668f4;
@@ -84,5 +84,17 @@
     .darkmodeToggler {
         cursor: pointer;
         color: white;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .navbarItems {
+        height: 60px;
+    }
+    .menuIcon {
+        top: -6px;
+    }
+    .navMenu {
+        top:60px;
     }
 }
