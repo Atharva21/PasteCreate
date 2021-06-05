@@ -1,4 +1,4 @@
-server/node_modules
-client/node_modules
-server/.env
-client/.env
+backend/node_modules
+frontend/node_modules
+backend/.env
+frontend/.env
