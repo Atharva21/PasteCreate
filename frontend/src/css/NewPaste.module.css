@@ -11,7 +11,7 @@
     margin-top: 2rem;
     border-radius: 5px;
     margin: 2rem 13rem;
-    height: 90vh;
+    height: 83vh;
     background-color: #1a1919;
 }
 
@@ -28,16 +28,13 @@ ul {
     outline: none;
 }
 
-#pasteDetailsForm {
-    margin-top: 25px;
-}
-
 h2 {
     margin-bottom: 2rem;
 }
 
 .submitPasteBtn {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .label {

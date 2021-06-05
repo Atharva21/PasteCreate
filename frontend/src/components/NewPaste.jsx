@@ -66,7 +66,7 @@ const NewPaste = () => {
             {isLoading === true && <Spinner />}
             <form className={styles.newPasteContainer} onSubmit={submitNewPaste}>
                 <textarea placeholder="Paste your text here" id={styles.pasteArea} name="paste" onChange={(e) => handleChangeInputField(e)} />
-                <ul id={styles.pasteDetailsForm}>
+                <ul >
                     <li>
                         <label htmlFor="title" className={styles.label}>Title</label>
                         <input type="text" name="title" className={styles.label} onChange={(e) => handleChangeInputField(e)} />
