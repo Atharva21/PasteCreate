@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import "../css/Main.css";
+import styles from "../css/Common.module.css";
 import AuthContext from "../store/auth-context";
 const Logout = () => {
     const authCtx = useContext(AuthContext);
@@ -7,7 +7,7 @@ const Logout = () => {
         authCtx.logout();
     }, [authCtx]);
     return (
-        <div className='flex-center' style={{ marginTop: '2rem' }}>
+        <div className={styles.flexCenter} style={{ marginTop: '2rem' }}>
             <h2>You've been logged out</h2>
         </div>
     )

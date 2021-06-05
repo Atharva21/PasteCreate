@@ -1,0 +1,37 @@
+.signUpForm,
+.signInForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formContainer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.formItem {
+    padding: 5px;
+    margin: 10px;
+}
+
+label {
+    font-size: 1.8em;
+}
+
+input {
+    font-size: 1.9em !important;
+}
+
+button {
+    margin: 1.5em auto !important;
+}
+
+@media screen and (max-width: 960px) {
+    input {
+        font-size: 1em !important;
+    }
+    label {
+        font-size: 1.9em;
+    }
+}

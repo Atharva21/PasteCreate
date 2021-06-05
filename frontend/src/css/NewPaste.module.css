@@ -1,0 +1,58 @@
+:root {
+    --input-font: courier, arial, helvetica !important;
+}
+
+.newPasteContainer {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+#pasteArea {
+    width: 80vw;
+    height: 60vh;
+    overflow-y: scroll;
+    margin: 10px 0px;
+    font-size: 1.5em;
+    font-family: var(--input-font);
+    outline: none;
+}
+
+h2 {
+    margin-bottom: 2rem;
+}
+
+.submitPasteBtn {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+#title {
+    margin-bottom: 1rem;
+    font-family: var(--input-font);
+    font-size: 1.3em;
+    outline: none;
+    width: 10em;
+}
+
+.label {
+    font-size: 1.4em;
+}
+
+#private {
+    margin-left: .7rem;
+}
+
+.privatePasteCheckboxContainer {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 960px) {
+    #text-paste-area {
+        width: 90vw;
+        margin: 5px 0;
+    }
+}

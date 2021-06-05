@@ -1,18 +1,21 @@
 
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useContext } from "react";
 import { Button } from "./Button";
 import axios from "axios";
-import "../css/Main.css";
-import "../css/MyPastes.css";
+import common from "../css/Common.module.css";
+import styles from "../css/MyPastes.module.css";
 import swal from "sweetalert";
 import Spinner from "./Spinner";
-const ViewPaste = (props) => {
+import AuthContext from "../store/auth-context";
+import CopyClipboard from "./utils/CopyClipboard";
+const ViewPaste = () => {
     const [currentPaste, setCurrentPaste] = useState([]);
     const [isPasteLoading, setIsPasteLoading] = useState(true);
+    const authCtx = useContext(AuthContext);
     useEffect(() => {
         let config = {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + authCtx.token
             }
         }
         const pathName = window.location.pathname.replace("/", "");
@@ -29,10 +32,10 @@ const ViewPaste = (props) => {
         return () => {
             setCurrentPaste([])
         }
-    }, [])
+    }, [authCtx.token])
 
     const handleCopyText = (text) => {
-        navigator.clipboard.writeText(text);
+        CopyClipboard(text);
         swal("Text copied to clipboard");
     }
 
@@ -40,16 +43,16 @@ const ViewPaste = (props) => {
         <div>
             {isPasteLoading && <Spinner />}
             {!isPasteLoading && currentPaste.length === 0 ? (
-                <div className='flex-center'>
+                <div className={common.flexCenter}>
                     <h1>Paste not found! <i className='fas fa-frown'></i></h1>
                 </div>
             ) : (
                 <Fragment>
                     {currentPaste.map((item, index) => (
-                        <div key={index} className='paste'>
+                        <div key={index} className={styles.paste}>
                             <h2>{item.title}</h2>
                             {item.data}
-                            <Button text={<i className="fas fa-copy"></i>} buttonStyle='btn--outline-flex-end' onClick={() => { handleCopyText(item.data) }} />
+                            <Button text={<i className="fas fa-copy"> Copy text</i>} buttonStyle='btn--outline-flex-end' onClick={() => { handleCopyText(item.data) }} />
                         </div>
                     ))}
                 </Fragment>
