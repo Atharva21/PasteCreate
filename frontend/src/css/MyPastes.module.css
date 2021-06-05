@@ -2,13 +2,16 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 20px 10px;
+    margin: 20px 20em;
+    background-color: #1a1919;
+    padding: 0px 20px;
+    border-radius: 10px;
 }
 
 .paste {
     display: flex;
     padding: 30px 20px;
-    margin: 2em 10em;
+    margin: 2em 0;
     border: 1px solid grey;
     border-radius: 5px;
     flex-direction: column;
@@ -25,14 +28,14 @@
     margin: 5px;
 }
 
+@media screen and (max-width: 1300px) {
+    .pastesContainer {
+        margin: 20px 8em;
+    }
+}
+
 @media screen and (max-width: 960px) {
-    .paste {
-        display: flex;
-        padding: 7px 9px;
-        margin: 5px;
-        border: 1px solid grey;
-        border-radius: 5px;
-        flex-direction: column;
-        white-space: pre-line;
+    .pastesContainer {
+        margin: 20px 10px;
     }
 }
