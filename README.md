@@ -1,5 +1,5 @@
 # PasteCreate
-A minimal paste storing website with private pastes and more!
+A minimal paste storing website with private pastes.
 
 ## Setting up client frontend
 * Create following variables in .env file 
